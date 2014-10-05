@@ -9,6 +9,8 @@
 [alias]
   lol = log --graph --decorate --oneline
   lola = log --graph --decorate --oneline --all
+  s = status
+  c = commit
 [giggle]
 	main-window-maximized = true
 	main-window-geometry = 0x0+0+0
