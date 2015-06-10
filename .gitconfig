@@ -2,18 +2,51 @@
 	email = philip.d.stewart@gmail.com
 	name = sodoku
 [core]
-	excludesfile = /home/sodoku/.gitignore_global
+	excludesfile = /home/sodoku/.gitignore
 	editor = vim
 [color]
 	ui = auto
+[pull]
+	default = current
+[push]
+	default = current
 [alias]
   lol = log --graph --decorate --oneline
   lola = log --graph --decorate --oneline --all
-  s = status
-  c = commit
+  dd = diff
+  dl = show HEAD
+  ds = diff --cached
+  dc = diff HEAD
+  webui = !/home/sodoku/.git-webui/release/libexec/git-core/git-webui
+  aa = add --all
+  ap = add --patch
+  branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
+  ca = commit --amend -v
+  ci = commit -v
+  co = checkout
+  co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
+  create-branch = !sh -c 'git push origin HEAD:refs/heads/$1 && git fetch origin && git branch --track $1 origin/$1 && cd . && git checkout $1' -
+  ctags = "!sh -c '[ -f .git/hooks/ctags ] || git init; .git/hooks/ctags' git-ctags"
+  current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' -
+  delete-branch = !sh -c 'git push origin :refs/heads/$1 && git branch -D $1' -
+  merge-branch = !git checkout master && git merge @{-1}
+  pr = !hub pull-request
+  rename-branch = !sh -c 'old=$(git current-branch) && git branch -m $old $1 && git push origin --set-upstream $1 && git push origin --delete $old' -
+  st = status
+  up = !git fetch origin && git rebase origin/master
 [giggle]
 	main-window-maximized = true
 	main-window-geometry = 0x0+0+0
 	file-view-vpane-position = 659
 	history-view-vpane-position = 429
 	main-window-view = HistoryView
+[webui]
+	autoupdate = true
+[credential]
+	helper = /usr/share/git/credential/gnome-keyring/git-credential-gnome-keyring
+[pager]
+	log = /usr/share/git/diff-highlight/diff-highlight | less
+	show = /usr/share/git/diff-highlight/diff-highlight | less
+	diff = /usr/share/git/diff-highlight/diff-highlight | less
+[include]
+  path = .gitcredentials
