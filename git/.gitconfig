@@ -2,7 +2,7 @@
 	email = philip.d.stewart@gmail.com
 	name = sodoku
 [core]
-	excludesfile = /home/sodoku/.gitignore
+	excludesfile = /Users/sodoku/.gitignore_global
 	editor = vim
 [color]
 	ui = auto
@@ -42,11 +42,10 @@
 	main-window-view = HistoryView
 [webui]
 	autoupdate = true
-[credential]
-	helper = /usr/share/git/credential/gnome-keyring/git-credential-gnome-keyring
-[pager]
-	log = /usr/share/git/diff-highlight/diff-highlight | less
-	show = /usr/share/git/diff-highlight/diff-highlight | less
-	diff = /usr/share/git/diff-highlight/diff-highlight | less
 [include]
   path = .gitcredentials
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
